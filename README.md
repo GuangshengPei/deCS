@@ -28,7 +28,8 @@ deCS relies on R (>= 3.5), reshape2 (>= 1.4.4), ggplot2 (>= 3.3.2). Please follo
 &#8194;&#8194;Or load the cell type marker gene list:  
 &#8194;&#8194;&#8194;&#8194;`> data(CellMatch)`  
 &#8194;&#8194;Then the matrix of cell type specificity, including `"BlueprintEncode_main_t_score"`, `"BlueprintEncode_fine_t_score"`, `"HCL_z_score"`, `"HCAF_z_score"`,`"DICE_main_t_score"`, `"DICE_fine_t_score"`, `"MonacoImmune_main_t_score"`, `"MonacoImmune_fine_t_score"`,  and `"CellMatch_markers"` will be loaded.
-#### Users can also upload their cell type marker gene list or database, like reference panel `CellMatch`, with at least two columns names with `c("Cell_type", "Marker_gene")`. 
+#### Users can also upload their cell type marker gene list or database
+&#8194;&#8194;User can check the format of reference panel `CellMatch`, with at least two columns with names `c("Cell_type", "Marker_gene")`. 
 ## 2.3 Input data
 &#8194;&#8194;Depending on the type of query data, we implemented two test approaches: Correlation analysis and Fisher's exact test for cell type enrichment analysis.
 ### 2.3.1 deCS.correlation() for expression profiles
