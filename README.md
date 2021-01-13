@@ -8,7 +8,8 @@
 &#8194;&#8194;`> install.packages("reshape2")  `  
 &#8194;&#8194;`> install.packages("ggplot2")  `
 ### To download the deCS package, please do:
-&#8194;&#8194;`git clone https://github.com/GuangshengPei/deCS.git`  
+&#8194;&#8194;`devtools::install_github("GuangshengPei/deCS")`
+&#8194;&#8194;Or user can download deCS package `git clone https://github.com/GuangshengPei/deCS.git`  
 &#8194;&#8194;`cd deCS`  
 &#8194;&#8194;Then open the R software and install deCS package.   
 
