@@ -2,11 +2,11 @@
 &#8194;&#8194;Single-cell RNA sequencing (scRNA-seq) is rapidly accelerate our understanding of the cellular compositions of complex tissues. Yet, one major limitation for current protocols rely on manual annotations, which are subjectivity and time-consuming. Existing cell automatically annotation methods strongly depend on the prior knowledge. With the exponential growth number of scRNA-seq data, allows us to create a comprehensive cell type specific expression profiles. On the other hands, such profiles can also be aligned with genome-wide association studies (GWASs) to implicate cell type specificity of the traits. Here, we collected several comprehensive resource of cell type expression profiles or marker genes for hundreds of cell types in human tissues. By extending our deTS algorithm, we implemented different statistical methods for detecting cell specific genes, and enrichment test of different forms of query data. Using different benchmark data sets, we demonstrate the feasibility of deCS can be widely applied on scRNA cell type definition, and outperformed SingleR on COVID-19 infection patients. In addition, we demonstrated the widespread utility of deCS on iPSC-derived bulk RNA-seq differentiation efficiency determination, and elucidation of trait-cell type associations for human complex diseases, thus providing better insight into mechanism underlying diseases pathogenesis.
 # 2. Usage
 ## 2.1 Installing deCS
-### Requirements
+### Requirements of other dependencies
 &#8194;&#8194;deCS relies on R (>= 3.5), reshape2 (>= 1.4.4), ggplot2 (>= 3.3.2)  
 &#8194;&#8194;Please follow their installation instruction.  
-&#8194;&#8194;`> install.packages("reshape2")  `  
-&#8194;&#8194;`> install.packages("ggplot2")  `
+&#8194;&#8194;Install reshape2 using `> install.packages("reshape2")  `.  
+&#8194;&#8194;Install ggplot2 using`> install.packages("ggplot2")  `.
 ### deCS R package can be easily installed from Github using devtools:
 &#8194;&#8194;`devtools::install_github("GuangshengPei/deCS")`  
 ### deCS loading
