@@ -61,6 +61,11 @@ deCS relies on R (>= 3.5), reshape2 (>= 1.4.4), ggplot2 (>= 3.3.2). Please follo
 &#8194;&#8194;For above bulk RNA-seq data sets, an average of 49.8 and 25.1 million clean reads per sample were generated, and then alignment to GRCh38 with STAR. Expression of the genes were normalized as TPM (Transcripts Per Kilobase Million) for accurate quantification using RSEM software. We provide data preprocess scripts at https://github.com/GuangshengPei/deCS/tree/master/Example_code.
 ## 3.3 Traits associated genes from GWAS summary data
 &#8194;&#8194;Deeper understanding of causal tissues of human complex diseases is an important step towards the etiology of disease origin, yet tissues are complex milieus consisting of numerous cell types. Tissue level association failed to elucidate cell type contributions in disease. The aim of this application was to illustrate the association between cell type and disease. To this end, deCS was applied to the GWAS data using the model for Fisher’s exact test. We provide data preprocess scripts at https://github.com/GuangshengPei/deCS/tree/master/Example_code/3.GWAS_trait_associate_genes.R.  
-## Citation
-Cell type enrichment analysis for scRNA-seq cell type annotation and elucidation of trait - cell associations for human complex traits.
+
+# System Requirements
+&#8194;&#8194;Hardware requirements: deCS package requires only a standard laptop with enough RAM to support the in-memory operations. deCS package is supported for Windows,  macOS and Linux. deCS can be installed on a normal computer within few mins.
+
+# Help
+If you have any question, comment or suggestion, please contact peiguangsheng@gmail.com
+
 
