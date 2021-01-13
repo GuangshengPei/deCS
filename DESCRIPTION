@@ -1,0 +1,12 @@
+Package: deCS
+Type: Package
+Title: Cell type enrichment analysis
+Version: 1.0
+Date: 2020-10-30
+Author: Guangsheng Pei
+Maintainer: Guangsheng Pei <peiguangsheng@gmail.com>
+Depends: R (>= 3.5.0)
+Description: Cell type enrichment analysis for scRNA-seq cell type annotation and elucidation of trait - cell associations for human complex traits.
+License: GPL (>= 2)
+NeedsCompilation: no
+Packaged: 2021-01-13 22:26:38 UTC; gpei
