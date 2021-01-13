@@ -64,10 +64,10 @@ deCS relies on R (>= 3.5), reshape2 (>= 1.4.4), ggplot2 (>= 3.3.2). Please follo
 ## 3.3 Traits associated genes from GWAS summary data
 &#8194;&#8194;Deeper understanding of causal tissues of human complex diseases is an important step towards the etiology of disease origin, yet tissues are complex milieus consisting of numerous cell types. Tissue level association failed to elucidate cell type contributions in disease. The aim of this application was to illustrate the association between cell type and disease. To this end, deCS was applied to the GWAS data using the model for Fisher’s exact test. We provide data preprocess scripts at https://github.com/GuangshengPei/deCS/tree/master/Example_code/3.GWAS_trait_associate_genes.R.  
 
-# System Requirements
+## System Requirements
 &#8194;&#8194;Hardware requirements: deCS package requires only a standard laptop with enough RAM to support the in-memory operations. deCS package is supported for Windows,  macOS and Linux. deCS can be installed on a normal computer within few mins.
 
-# Help
-If you have any question, comment or suggestion, please contact peiguangsheng@gmail.com
+## Help
+If you have any question, comment or suggestion, please contact peiguangsheng@gmail.com.
 
 
