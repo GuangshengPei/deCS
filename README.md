@@ -20,7 +20,7 @@ deCS relies on R (>= 3.5), reshape2 (>= 1.4.4), ggplot2 (>= 3.3.2). Please follo
 &#8194;&#8194;&#8194;&#8194;`> data(BlueprintEncode_main)`  
 &#8194;&#8194;&#8194;&#8194;`> data(BlueprintEncode_fine)`  
 &#8194;&#8194;&#8194;&#8194;`> data(Human_cell_landscape)`  
-&#8194;&#8194;&#8194;&#8194;`> data(Human_cell_atlas_of_fetal)` 
+&#8194;&#8194;&#8194;&#8194;`> data(Human_cell_atlas_of_fetal)`   
 &#8194;&#8194;&#8194;&#8194;`> data(DICE_main)`  
 &#8194;&#8194;&#8194;&#8194;`> data(DICE_fine)`  
 &#8194;&#8194;&#8194;&#8194;`> data(MonacoImmune_main)`  
