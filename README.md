@@ -7,7 +7,7 @@
 &#8194;&#8194;Please follow their installation instruction.  
 &#8194;&#8194;Install reshape2 using `> install.packages("reshape2")  `.  
 &#8194;&#8194;Install ggplot2 using`> install.packages("ggplot2")  `.
-### deCS R package can be easily installed from Github using devtools:
+#### deCS R package can be easily installed from Github using devtools:
 &#8194;&#8194;`devtools::install_github("GuangshengPei/deCS")`  
 ### deCS loading
 &#8194;&#8194;Load the deCS package   
