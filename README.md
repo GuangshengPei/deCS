@@ -22,20 +22,36 @@ library(deCS)
 ## 2.2 Built-in data loading
 &#8194;&#8194;deCS collected several cell type reference panels, including BlueprintEncode, the Database of Immune Cell Expression (DICE), MonacoImmune, human cell landscape, human cell atlas of fetal et al. After installation of deCS package, one can load the build-in references using the following commands:  
 ```
+#BlueprintEncode_main_t_score
 data(BlueprintEncode_main)
+#BlueprintEncode_fine_t_score
 data(BlueprintEncode_fine)
+#DICE_main_t_score
 data(DICE_main)
+#DICE_fine_t_score
 data(DICE_fine)
+#MonacoImmune_main_t_score
 data(MonacoImmune_main)
+#MonacoImmune_fine_t_score
 data(MonacoImmune_fine)
+#Human_cell_landscape (HCL_z_score)
 data(Human_cell_landscape)
+#Human_cell_atlas_of_fetal (HCAF_z_score)
 data(Human_cell_atlas_of_fetal)
 ```
-&#8194;&#8194;Then the matrix of gene cell type-specificity, including `"BlueprintEncode_main_t_score"`, `"BlueprintEncode_fine_t_score"`, `"DICE_main_t_score"`, `"DICE_fine_t_score"`, `"MonacoImmune_main_t_score"`, `"MonacoImmune_fine_t_score"`, `"HCL_z_score"`, `"HCAF_z_score"`, will be loaded.
-
-&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch. 
-&#8194;&#8194;&#8194;&#8194;`> data(CellMatch)` 
-&#8194;&#8194;&#8194;&#8194;Then the gene list of `"CellMatch_markers"` will be loaded. User can also upload their predefined cell type marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`
+&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch database.   
+```
+data(CellMatch)
+head(CellMatch_markers)
+                       Cell_type Marker_gene
+1 1-Cell Stage Cell (Blastomere)       ACCSL
+2 1-Cell Stage Cell (Blastomere)      ACVR1B
+3 1-Cell Stage Cell (Blastomere)    ARHGEF16
+4 1-Cell Stage Cell (Blastomere)       ASF1B
+5 1-Cell Stage Cell (Blastomere)     BCL2L10
+6 1-Cell Stage Cell (Blastomere)       BLCAP
+```
+&#8194;&#8194;The gene list of `"CellMatch_markers"` will be loaded. User can also upload their predefined cell type marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`
 ## 2.3 Input data
 &#8194;&#8194;Depending on the type of query data, we implemented two test approaches: Correlation analysis and Fisher's exact test for cell type enrichment analysis.
 ### 2.3.1 deCS.correlation() for expression profiles
