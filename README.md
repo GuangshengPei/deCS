@@ -39,7 +39,7 @@ data(Human_cell_landscape)
 #Human_cell_atlas_of_fetal (HCAF_z_score)
 data(Human_cell_atlas_of_fetal)
 ```
-&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch database. The gene list of `"CellMatch_markers"` will be loaded. User can also upload their predefined cell type marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`
+&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch database. The gene list of `"CellMatch_markers"` will be loaded. User can also create your own cell type marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`.   
 ```
 data(CellMatch)
 head(CellMatch_markers)
@@ -59,6 +59,7 @@ head(CellMatch_markers)
 &#8194;&#8194;Here, `markers_expression` is scaled gene expression matrix for human scRNA-seq or bulk RNA-seq.    
 &#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;`ref_panel` is pre-calculated cell type specificity score reference panel.     
 &#8194;&#8194;More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.     
+
 #### Gene expression profiles normalization
 &#8194;&#8194;Before `deCS.correlation` analysis, make sure raw expression profiles have been normalized so that each cell in query data will be scaled appropriately with the reference data. We provided two normalization approaches: `"z-score"` and `"abundance"`, which available from our previous deTS package `tsea.expression.normalization()` function:      
 &#8194;&#8194;(1) `"z-score"` normalization will calculate a z-score for the query sample for each cell type in the reference panel as below: e_i=(e_0-μ_t))/sd_t, where μ_t and sd_t were the mean and SD of cell type t.      
