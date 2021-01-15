@@ -6,8 +6,8 @@
 deCS relies on R (>= 3.5), reshape2 (>= 1.4.4), ggplot2 (>= 3.3.2). Please follow their installation instruction.   
 
 ```
-install.packages("reshape2")`
-install.packages("ggplot2")`
+install.packages("reshape2")
+install.packages("ggplot2")
 ```
 ### deCS R package can be easily installed from Github using devtools:
 ```
@@ -21,15 +21,16 @@ library(deCS)
 ``` 
 ## 2.2 Built-in data loading
 &#8194;&#8194;deCS collected several cell type reference panels, including BlueprintEncode, the Database of Immune Cell Expression (DICE), MonacoImmune, human cell landscape, human cell atlas of fetal et al. After installation of deCS package, one can load the build-in references using the following commands:  
-
-&#8194;&#8194;&#8194;&#8194;`> data(BlueprintEncode_main)`  
-&#8194;&#8194;&#8194;&#8194;`> data(BlueprintEncode_fine)`  
-&#8194;&#8194;&#8194;&#8194;`> data(DICE_main)`  
-&#8194;&#8194;&#8194;&#8194;`> data(DICE_fine)`  
-&#8194;&#8194;&#8194;&#8194;`> data(MonacoImmune_main)`  
-&#8194;&#8194;&#8194;&#8194;`> data(MonacoImmune_fine)`  
-&#8194;&#8194;&#8194;&#8194;`> data(Human_cell_landscape)`  
-&#8194;&#8194;&#8194;&#8194;`> data(Human_cell_atlas_of_fetal)`    
+```
+data(BlueprintEncode_main)
+data(BlueprintEncode_fine)
+data(DICE_main)
+data(DICE_fine)
+data(MonacoImmune_main)
+data(MonacoImmune_fine)
+data(Human_cell_landscape)
+data(Human_cell_atlas_of_fetal)
+```
 &#8194;&#8194;Then the matrix of gene cell type-specificity, including `"BlueprintEncode_main_t_score"`, `"BlueprintEncode_fine_t_score"`, `"DICE_main_t_score"`, `"DICE_fine_t_score"`, `"MonacoImmune_main_t_score"`, `"MonacoImmune_fine_t_score"`, `"HCL_z_score"`, `"HCAF_z_score"`, will be loaded.
 
 &#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch. 
