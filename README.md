@@ -13,23 +13,21 @@ deCS relies on R (>= 3.5), reshape2 (>= 1.4.4), ggplot2 (>= 3.3.2). Please follo
 &#8194;&#8194;`> library(deCS)`  
  
 ## 2.2 Built-in data loading
-&#8194;&#8194;deCS requires different cell type reference panels to conduct the cell type enrichment test.    
-&#8194;&#8194;Here, `ref_panel = c("BlueprintEncode_main", "BlueprintEncode_fine", "Human_cell_landscape", "Human_cell_atlas_of_fetal", "DICE_main", "DICE_fine", "MonacoImmune_main", "MonacoImmune_fine", "CellMatch")`.    
-&#8194;&#8194;After installation of deCS package, one can load the reference data using the following commands:  
+&#8194;&#8194;deCS collected several cell type reference panels, including BlueprintEncode, the Database of Immune Cell Expression (DICE), MonacoImmune, human cell landscape, human cell atlas of fetal et al. After installation of deCS package, one can load the build-in references using the following commands:  
 
 &#8194;&#8194;&#8194;&#8194;`> data(BlueprintEncode_main)`  
 &#8194;&#8194;&#8194;&#8194;`> data(BlueprintEncode_fine)`  
-&#8194;&#8194;&#8194;&#8194;`> data(Human_cell_landscape)`  
-&#8194;&#8194;&#8194;&#8194;`> data(Human_cell_atlas_of_fetal)`   
 &#8194;&#8194;&#8194;&#8194;`> data(DICE_main)`  
 &#8194;&#8194;&#8194;&#8194;`> data(DICE_fine)`  
 &#8194;&#8194;&#8194;&#8194;`> data(MonacoImmune_main)`  
 &#8194;&#8194;&#8194;&#8194;`> data(MonacoImmune_fine)`  
-&#8194;&#8194;Or load the cell type marker gene list:  
-&#8194;&#8194;&#8194;&#8194;`> data(CellMatch)`  
-&#8194;&#8194;Then the matrix of cell type specificity, including `"BlueprintEncode_main_t_score"`, `"BlueprintEncode_fine_t_score"`, `"HCL_z_score"`, `"HCAF_z_score"`,`"DICE_main_t_score"`, `"DICE_fine_t_score"`, `"MonacoImmune_main_t_score"`, `"MonacoImmune_fine_t_score"`,  and `"CellMatch_markers"` will be loaded.
-#### Users can also upload their cell type marker gene list or database
-&#8194;&#8194;User can check the format of reference panel `CellMatch`, with at least two columns with names `c("Cell_type", "Marker_gene")`. 
+&#8194;&#8194;&#8194;&#8194;`> data(Human_cell_landscape)`  
+&#8194;&#8194;&#8194;&#8194;`> data(Human_cell_atlas_of_fetal)`    
+&#8194;&#8194;Then the matrix of gene cell type-specificity, including `"BlueprintEncode_main_t_score"`, `"BlueprintEncode_fine_t_score"`, `"DICE_main_t_score"`, `"DICE_fine_t_score"`, `"MonacoImmune_main_t_score"`, `"MonacoImmune_fine_t_score"`, `"HCL_z_score"`, `"HCAF_z_score"`, will be loaded.
+
+&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch. 
+&#8194;&#8194;&#8194;&#8194;`> data(CellMatch)` 
+&#8194;&#8194;&#8194;&#8194;Then the gene list of `"CellMatch_markers"` will be loaded. User can also upload their predefined cell type marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`
 ## 2.3 Input data
 &#8194;&#8194;Depending on the type of query data, we implemented two test approaches: Correlation analysis and Fisher's exact test for cell type enrichment analysis.
 ### 2.3.1 deCS.correlation() for expression profiles
