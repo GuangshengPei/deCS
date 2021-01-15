@@ -14,7 +14,7 @@ install.packages("ggplot2")
 # install.packages("devtools")        
 devtools::install_github("GuangshengPei/deCS")
 ```
-## Getting Started 
+### Getting Started 
 Once we have the package installed, we can load the package. 
 ```
 library(deCS)  
