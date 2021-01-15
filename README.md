@@ -6,8 +6,8 @@
 deCS relies on R (>= 3.5), reshape2 (>= 1.4.4), ggplot2 (>= 3.3.2). Please follow their installation instruction.   
 
 ```
-> install.packages("reshape2")`
-> install.packages("ggplot2")`
+install.packages("reshape2")`
+install.packages("ggplot2")`
 ```
 ### deCS R package can be easily installed from Github using devtools:
 ```
@@ -16,8 +16,9 @@ devtools::install_github("GuangshengPei/deCS")
 ```
 ## Getting Started 
 Once we have the package installed, we can load the package. 
-&#8194;&#8194;`> library(deCS)`  
- 
+```
+library(deCS)  
+``` 
 ## 2.2 Built-in data loading
 &#8194;&#8194;deCS collected several cell type reference panels, including BlueprintEncode, the Database of Immune Cell Expression (DICE), MonacoImmune, human cell landscape, human cell atlas of fetal et al. After installation of deCS package, one can load the build-in references using the following commands:  
 
