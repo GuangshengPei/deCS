@@ -56,8 +56,27 @@ head(CellMatch_markers)
 In this tutorial, we will run deCS on [preprocessed PBMC data](https://github.com/GuangshengPei/deCS/tree/main/Example_data/1.1.PBMC/pbmc_example.rda).
 
 ### 2.3.1 deCS.correlation() for expression profiles
-&#8194;&#8194;If the query is gene expression profile, we provide function `deCS.correlation()` for cell type enrichment analysis. Simply, we calculate pearson correlation coefficient (PCC) or Spearman's rank correlation coefficient with each of the cell type in the reference dataset, then the most relevant cell type(s) will be identified.   
-&#8194;&#8194;`> deCS.correlation(markers_expression, ref_panel) `     
+&#8194;&#8194;If the query is gene expression profile, we provide function `deCS.correlation()` for cell type enrichment analysis. Simply, we calculate pearson correlation coefficient (PCC) or Spearman's rank correlation coefficient with each of the cell type in the reference dataset, then the most relevant cell type(s) will be identified. 
+```
+load("pbmc_example.rda")
+head(pbmc_cluster_marker_z_score)
+       Naive CD4 T Memory CD4 T CD14+ Mono          B      CD8 T FCGR3A+ Mono          NK         DC
+RHOC    -0.7581827   -0.6728063 -0.5539563 -0.6884791 -0.3323893    2.2580565  0.77225930 -0.4513599
+CD2      0.4694667    1.7349728 -0.7898039 -0.7591715  1.4013552   -0.7432280  0.09901601 -0.5552728
+S100A9  -0.4071876   -0.4062238  2.6504337 -0.4045475 -0.4059206   -0.1321780 -0.40858303 -0.1606083
+S100A8  -0.3739926   -0.3716080  2.6617595 -0.3746993 -0.3819118   -0.2019757 -0.37228956 -0.2841058
+FCER1A  -0.3220375   -0.3432463 -0.3138008 -0.3430898 -0.3326199   -0.3414830 -0.32525747  2.6665050
+FCER1G  -0.7553841   -0.7614134  0.6567761 -0.7648104 -0.7323036    2.2576395  0.30423366  0.1057573
+         Platelet
+RHOC    0.4268578
+CD2    -0.8573346
+S100A9 -0.3251849
+S100A8 -0.3011767
+FCER1A -0.3449702
+FCER1G -0.3104950
+#deCS.correlation(markers_expression, ref_panel) ` 
+pbmc_deCS_cor <- deCS.correlation(pbmc_cluster_marker_z_score, MonacoImmune_main_t_score)
+```  
 &#8194;&#8194;Here, `markers_expression` is scaled gene expression matrix for human scRNA-seq or bulk RNA-seq.    
 &#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;`ref_panel` is pre-calculated cell type specificity score reference panel.     
 &#8194;&#8194;More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.     
