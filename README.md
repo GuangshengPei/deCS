@@ -107,7 +107,7 @@ write.table(pbmc_deCS_cor_panel_A, file = "pbmc_deCS_result.txt", sep = "\t", qu
  More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.   
 
 ### 2.3.2 deCS.fisher() for list of genes     
-&#8194;&#8194;If the query is a list of genes (e.g. union of marker genes, traits associated genes), we provide function `deCS.fisher()`, implement with Fisher’s exact test to identify query gene set enriched in cell type specific genes (CSGs). We allow the user to define the cutoff values, e.g., the top 5% genes as CSGs. For each query gene set and CSGs in a given cell type, deCS will identify whether a set of “candidate genes” of interest are disproportionately expressed in a specific cell type by using Fisher’s exact test.     
+&#8194;&#8194;If the query is a list of genes (e.g. union of marker genes, traits associated genes), we provide function `deCS.fisher()`, implement with Fisher’s exact test to identify query gene set enriched in cell type-specific genes (CTgenes). We allow the user to define the cutoff values, e.g., the top 5% genes with highest t-score/z-score as CTgenes. For each query gene set and CTgenes in a given cell type, deCS will identify whether a set of “candidate marker genes” are disproportionately overlapped in a specific cell type specific genes.     
 ```  
 load("pbmc_example.rda")
 head(pbmc_top10_markers_list, 20)
@@ -137,7 +137,6 @@ CD3E1      8.015029e-55 0.6006175 0.828 0.409  1.099181e-50 Memory CD4 T      CD
 pbmc_deCS_FET_panel_A <- deCS.fisher(pbmc_top10_markers_list, MonacoImmune_main_t_score)
 ```  
 Here, `markers_list` is a gene list table with at least two columns names with "cluster" and "gene", `ref_panel` is pre-calculated cell type specificity score reference panel.    In addition, users can also create your own cell type marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`.   
-
 ``` 
 # Please specifiy type = "list" when the reference is cell type-marker gene lists.
 pbmc_deCS_FET_Cellmatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_markers, type = "list", p.adjust.methods = "bonferroni", p_threshold = 1e-3, cell_type_threshold = 0.05)
