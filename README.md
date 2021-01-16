@@ -69,16 +69,43 @@ FCER1A  -0.3220375   -0.3432463 -0.3138008 -0.3430898 -0.3326199   -0.3414830 -0
 FCER1G  -0.7553841   -0.7614134  0.6567761 -0.7648104 -0.7323036    2.2576395  0.30423366  0.1057573 -0.3104950
 
 # deCS.correlation(markers_expression, ref_panel)
-pbmc_deCS_cor <- deCS.correlation(pbmc_cluster_marker_z_score, MonacoImmune_main_t_score)
-```  
-&#8194;&#8194;Here, `markers_expression` is scaled gene expression matrix for human scRNA-seq or bulk RNA-seq, user can see detail preprocess pipline from [Example_code page](https://github.com/GuangshengPei/deCS/tree/main/Example_code).  
-&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;`ref_panel` is pre-calculated cell type specificity score reference panel, see section 2.2 Built-in data loading.       
-&#8194;&#8194;More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.     
+# pdf ("Annotation_A.pdf", 8, 8)
+pbmc_deCS_cor_panel_A <- deCS.correlation(pbmc_cluster_marker_z_score, MonacoImmune_main_t_score)
+# dev.off()
 
-#### Gene expression profiles normalization
-&#8194;&#8194;Before `deCS.correlation` analysis, make sure raw expression profiles have been normalized so that each cell in query data will be scaled appropriately with the reference data. We provided two normalization approaches: `"z-score"` and `"abundance"`, which available from our previous deTS package `tsea.expression.normalization()` function:      
-&#8194;&#8194;(1) `"z-score"` normalization will calculate a z-score for the query sample for each cell type in the reference panel as below: e_i=(e_0-μ_t))/sd_t, where μ_t and sd_t were the mean and SD of cell type t.      
-&#8194;&#8194;(2) `"abundance"` normalization will provide an abundance correction approach for the query sample for each cell type in the reference panel as below: e_i=(log2(e_0+1)/(log2(u_t+1)+1).     
+```  
+&#8194;&#8194;Here, `markers_expression` is scaled gene expression matrix for human scRNA-seq or bulk RNA-seq, users can see detail preprocess steps from [Example_code page](https://github.com/GuangshengPei/deCS/tree/main/Example_code). `ref_panel` is pre-calculated cell type specificity score reference panel, see section 2.2 Built-in data loading. More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.     
+
+```  
+head(pbmc_deCS_cor_panel_A)
+pbmc_deCS_cor_panel_A 
+         Query Max_correlation            Top1            Top2            Top3     Cell_labels
+1  Naive CD4 T       0.8670209    CD4+ T cells    CD8+ T cells         T cells    CD4+ T cells
+2 Memory CD4 T       0.8621523    CD4+ T cells    CD8+ T cells         T cells    CD4+ T cells
+3   CD14+ Mono       0.7053299       Monocytes     Neutrophils Dendritic cells       Monocytes
+4            B       0.8152868         B cells Dendritic cells         T cells         B cells
+5        CD8 T       0.7981408    CD8+ T cells         T cells    CD4+ T cells    CD8+ T cells
+6 FCGR3A+ Mono       0.7660590       Monocytes     Neutrophils Dendritic cells       Monocytes
+7           NK       0.8930805        NK cells         T cells    CD8+ T cells        NK cells
+8           DC       0.8151785 Dendritic cells       Monocytes         B cells Dendritic cells
+9     Platelet       0.7281423     Progenitors       Basophils     Neutrophils     Progenitors
+
+write.table(pbmc_deCS_cor_panel_A, file = "pbmc_deCS_result.txt", sep = "\t", quote = F)
+
+# users can easily change the reference panel
+
+ deCS.correlation(pbmc_cluster_marker_z_score, HCL_z_score, top_n = 3, cor_threshold = 0.5, p_threshold = 0.01, cell_type_threshold = 0.5)
+         Query Max_correlation                     Top1                   Top2                           Top3              Cell_labels
+1  Naive CD4 T       0.6355362 C52_Proliferating T cell              C6_T cell          C77_Ureteric bud cell C52_Proliferating T cell
+2 Memory CD4 T       0.6794370 C52_Proliferating T cell              C6_T cell C64_Fetal skeletal muscle cell C52_Proliferating T cell
+3   CD14+ Mono       0.6579867             C13_Monocyte         C51_Macrophage                 C69_Macrophage             C13_Monocyte
+4            B       0.8321910               C37_B cell C3_B cell (Plasmocyte)       C9_Enterocyte progenitor               C37_B cell
+5        CD8 T       0.7537835               C24_T cell       C93_Myeloid cell                      C6_T cell               C24_T cell
+6 FCGR3A+ Mono       0.4364741           C69_Macrophage           C13_Monocyte                  C2_Macrophage       Undetermined cells
+7           NK       0.6104342               C24_T cell       C93_Myeloid cell         C35_Smooth muscle cell               C24_T cell
+8           DC       0.7169097       C22_Dendritic cell           C13_Monocyte                  C2_Macrophage       C22_Dendritic cell
+9     Platelet       0.4415510     C20_Endothelial cell   C76_Mesothelial cell               C72_Stromal cell       Undetermined cells
+```  
 
 ### 2.3.2 deCS.fisher() for list of genes     
 &#8194;&#8194;If the query is a list of genes (e.g. union of marker genes, traits associated genes), we provide function `deCS.fisher()`, implement with Fisher’s exact test to identify query gene set enriched in cell type specific genes (CSGs). We allow the user to define the cutoff values, e.g., the top 5% genes as CSGs. For each query gene set and CSGs in a given cell type, deCS will identify whether a set of “candidate genes” of interest are disproportionately expressed in a specific cell type by using Fisher’s exact test.     
