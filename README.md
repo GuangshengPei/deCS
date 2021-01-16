@@ -22,24 +22,24 @@ library(deCS)
 ## 2.2 Built-in data loading
 &#8194;&#8194;deCS collected several cell type reference panels, including BlueprintEncode, the Database of Immune Cell Expression (DICE), MonacoImmune, human cell landscape, human cell atlas of fetal et al. After installation of deCS package, one can load the build-in references using the following commands:  
 ```
-#BlueprintEncode_main_t_score
+# BlueprintEncode_main_t_score
 data(BlueprintEncode_main)
-#BlueprintEncode_fine_t_score
+# BlueprintEncode_fine_t_score
 data(BlueprintEncode_fine)
-#DICE_main_t_score
+# DICE_main_t_score
 data(DICE_main)
-#DICE_fine_t_score
+# DICE_fine_t_score
 data(DICE_fine)
-#MonacoImmune_main_t_score
+# MonacoImmune_main_t_score
 data(MonacoImmune_main)
-#MonacoImmune_fine_t_score
+# MonacoImmune_fine_t_score
 data(MonacoImmune_fine)
-#Human_cell_landscape (HCL_z_score)
+# Human_cell_landscape (HCL_z_score)
 data(Human_cell_landscape)
-#Human_cell_atlas_of_fetal (HCAF_z_score)
+# Human_cell_atlas_of_fetal (HCAF_z_score)
 data(Human_cell_atlas_of_fetal)
 ```
-&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch database. The gene list of `"CellMatch_markers"` will be loaded. User can also create your own cell type marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`.   
+&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch database. The gene list of `"CellMatch_markers"` will be loaded. 
 ```
 data(CellMatch)
 head(CellMatch_markers)
@@ -59,7 +59,7 @@ In this tutorial, we will run deCS on [preprocessed PBMC data](https://github.co
 &#8194;&#8194;If the query is gene expression profile, we provide function `deCS.correlation()` for cell type enrichment analysis. Simply, we calculate pearson correlation coefficient (PCC) or Spearman's rank correlation coefficient with each of the cell type in the reference dataset, then the most relevant cell type(s) will be identified. 
 ```
 load("pbmc_example.rda")
- head(pbmc_cluster_marker_z_score)
+head(pbmc_cluster_marker_z_score)
        Naive CD4 T Memory CD4 T CD14+ Mono          B      CD8 T FCGR3A+ Mono          NK         DC   Platelet
 RHOC    -0.7581827   -0.6728063 -0.5539563 -0.6884791 -0.3323893    2.2580565  0.77225930 -0.4513599  0.4268578
 CD2      0.4694667    1.7349728 -0.7898039 -0.7591715  1.4013552   -0.7432280  0.09901601 -0.5552728 -0.8573346
@@ -69,15 +69,13 @@ FCER1A  -0.3220375   -0.3432463 -0.3138008 -0.3430898 -0.3326199   -0.3414830 -0
 FCER1G  -0.7553841   -0.7614134  0.6567761 -0.7648104 -0.7323036    2.2576395  0.30423366  0.1057573 -0.3104950
 
 # deCS.correlation(markers_expression, ref_panel)
-# pdf ("Annotation_A.pdf", 8, 8)
+# pdf ("deCS_Cor_annotation_A.pdf", 8, 8)
 pbmc_deCS_cor_panel_A <- deCS.correlation(pbmc_cluster_marker_z_score, MonacoImmune_main_t_score)
 # dev.off()
+```  
+&#8194;&#8194;Here, `markers_expression` is scaled gene expression matrix for human scRNA-seq or bulk RNA-seq, users can see detail preprocess steps from [Example_code page](https://github.com/GuangshengPei/deCS/tree/main/Example_code). `ref_panel` is pre-calculated cell type specificity score reference panel, see section (2.2 Built-in data loading).  
 
 ```  
-&#8194;&#8194;Here, `markers_expression` is scaled gene expression matrix for human scRNA-seq or bulk RNA-seq, users can see detail preprocess steps from [Example_code page](https://github.com/GuangshengPei/deCS/tree/main/Example_code). `ref_panel` is pre-calculated cell type specificity score reference panel, see section 2.2 Built-in data loading. More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.     
-
-```  
-head(pbmc_deCS_cor_panel_A)
 pbmc_deCS_cor_panel_A 
          Query Max_correlation            Top1            Top2            Top3     Cell_labels
 1  Naive CD4 T       0.8670209    CD4+ T cells    CD8+ T cells         T cells    CD4+ T cells
@@ -92,7 +90,7 @@ pbmc_deCS_cor_panel_A
 
 write.table(pbmc_deCS_cor_panel_A, file = "pbmc_deCS_result.txt", sep = "\t", quote = F)
 
-# users can easily change the reference panel
+# users can easily change the reference panel, and other parameters, e.g. add `cor_threshold` to avoid mis-annotation (regard as "Undetermined cells").
 
  deCS.correlation(pbmc_cluster_marker_z_score, HCL_z_score, top_n = 3, cor_threshold = 0.5, p_threshold = 0.01, cell_type_threshold = 0.5)
          Query Max_correlation                     Top1                   Top2                           Top3              Cell_labels
@@ -106,14 +104,46 @@ write.table(pbmc_deCS_cor_panel_A, file = "pbmc_deCS_result.txt", sep = "\t", qu
 8           DC       0.7169097       C22_Dendritic cell           C13_Monocyte                  C2_Macrophage       C22_Dendritic cell
 9     Platelet       0.4415510     C20_Endothelial cell   C76_Mesothelial cell               C72_Stromal cell       Undetermined cells
 ```  
+ More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.   
 
 ### 2.3.2 deCS.fisher() for list of genes     
 &#8194;&#8194;If the query is a list of genes (e.g. union of marker genes, traits associated genes), we provide function `deCS.fisher()`, implement with Fisher’s exact test to identify query gene set enriched in cell type specific genes (CSGs). We allow the user to define the cutoff values, e.g., the top 5% genes as CSGs. For each query gene set and CSGs in a given cell type, deCS will identify whether a set of “candidate genes” of interest are disproportionately expressed in a specific cell type by using Fisher’s exact test.     
-&#8194;&#8194;`> deCS.fisher(markers_list, ref_panel) `        
-&#8194;&#8194;Here, `markers_list` is a gene list table with at least two columns names with "cluster" and "gene".    
-&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;`ref_panel` is pre-calculated cell type specificity score reference panel.     
+```  
+load("pbmc_example.rda")
+head(pbmc_top10_markers_list, 20)
+                  p_val avg_logFC pct.1 pct.2     p_val_adj      cluster      gene
+RPS3A     1.075148e-108 0.5375120 0.991 0.977 1.474457e-104  Naive CD4 T     RPS3A
+LDHB      1.963031e-107 0.7300635 0.901 0.594 2.692101e-103  Naive CD4 T      LDHB
+CCR7       1.606796e-82 0.9219135 0.436 0.110  2.203560e-78  Naive CD4 T      CCR7
+CD3D       4.198081e-77 0.6598608 0.838 0.406  5.757249e-73  Naive CD4 T      CD3D
+CD3E       2.316054e-54 0.5999356 0.726 0.399  3.176237e-50  Naive CD4 T      CD3E
+NOSIP      3.191555e-50 0.6926087 0.628 0.358  4.376899e-46  Naive CD4 T     NOSIP
+LEF1       3.324866e-49 0.7296372 0.336 0.104  4.559722e-45  Naive CD4 T      LEF1
+PRKCQ-AS1  2.498572e-44 0.7119736 0.331 0.110  3.426542e-40  Naive CD4 T PRKCQ-AS1
+PIK3IP1    7.614450e-43 0.6500625 0.438 0.185  1.044246e-38  Naive CD4 T   PIK3IP1
+IL7R       3.894244e-35 0.5029688 0.597 0.333  5.340566e-31  Naive CD4 T      IL7R
+MAL        6.485255e-33 0.6420019 0.263 0.088  8.893879e-29  Naive CD4 T       MAL
+TRAT1      4.014940e-15 0.3657010 0.265 0.140  5.506089e-11  Naive CD4 T     TRAT1
+IL32       1.894810e-92 0.8373872 0.948 0.464  2.598542e-88 Memory CD4 T      IL32
+LTB        7.953303e-89 0.8921170 0.981 0.642  1.090716e-84 Memory CD4 T       LTB
+CD3D1      1.655937e-70 0.6436286 0.919 0.431  2.270951e-66 Memory CD4 T      CD3D
+IL7R1      3.688893e-68 0.8147082 0.747 0.325  5.058947e-64 Memory CD4 T      IL7R
+LDHB1      2.292819e-67 0.6253110 0.950 0.613  3.144372e-63 Memory CD4 T      LDHB
+CD2        2.504468e-61 0.8559204 0.652 0.244  3.434627e-57 Memory CD4 T       CD2
+AQP3       1.851623e-60 0.8586034 0.422 0.110  2.539316e-56 Memory CD4 T      AQP3
+CD3E1      8.015029e-55 0.6006175 0.828 0.409  1.099181e-50 Memory CD4 T      CD3E
+
+# deCS.fisher(markers_list, ref_panel)
+pbmc_deCS_FET_panel_A <- deCS.fisher(pbmc_top10_markers_list, MonacoImmune_main_t_score)
+```  
+Here, `markers_list` is a gene list table with at least two columns names with "cluster" and "gene", `ref_panel` is pre-calculated cell type specificity score reference panel.    In addition, users can also create your own cell type marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`.   
+
+``` 
+# Please specifiy type = "list" when the reference is cell type-marker gene lists.
+pbmc_deCS_FET_Cellmatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_markers, type = "list", p.adjust.methods = "bonferroni", p_threshold = 1e-3, cell_type_threshold = 0.05)
+``` 
 &#8194;&#8194;More parameters in `deCS.fisher` function is available at `help(deCS.fisher)`.      
-## 3. Examples application   
+## 3. More examples application and evaluation   
 ## 3.1 single cell RNA-seq data
 &#8194;&#8194;To explore the deCS utility for direct annotation of single cell expression profiles, we attempted to analyze three different scRNA-seq datasets.    
 &#8194;&#8194;(1) The test dataset of 3k Peripheral Blood Mononuclear Cells (PBMC) was collected from 10X Genomics website (https://support.10xgenomics.com/single-cell-gene-expression/datasets). The raw data of 3k PBMCs from a healthy donor included 2,700 single cells that were sequenced on the Illumina NextSeq 500 platform. Overall this dataset with ~2200 median UMI count per cell and ~800 median genes per cell.    
