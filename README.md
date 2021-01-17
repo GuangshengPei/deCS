@@ -138,7 +138,7 @@ pbmc_deCS_FET_panel_A <- deCS.fisher(pbmc_top10_markers_list, MonacoImmune_main_
 Here, `markers_list` is a gene list table with at least two columns (named with "cluster" and "gene"); `ref_panel` is pre-calculated cell type specificity score reference panel. 
 ``` 
 # Please specifiy type = "list" when the reference is cell type-marker gene lists.
-pbmc_deCS_FET_Cellmatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_markers, type = "list", p.adjust.methods = "bonferroni", p_threshold = 1e-3, cell_type_threshold = 0.05)
+pbmc_deCS_FET_CellMatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_markers, type = "list", p.adjust.methods = "bonferroni", p_threshold = 1e-3, cell_type_threshold = 0.05)
 ``` 
 #### Users can also create your own cell type-marker genes list, with at least two columns with names `Cell_type` and `Marker_gene`.  
 &#8194;&#8194;More parameters in `deCS.fisher` function is available at `help(deCS.fisher)`.      
@@ -146,7 +146,7 @@ pbmc_deCS_FET_Cellmatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_marker
 ## 3.1 single cell RNA-seq data
 &#8194;&#8194;To explore the deCS utility for direct annotation of single cell expression profiles, we evaluated three different scRNA-seq datasets.    
 &#8194;&#8194;(1) The test dataset of 3k Peripheral Blood Mononuclear Cells (PBMC) was collected from [10X Genomics website](https://support.10xgenomics.com/single-cell-gene-expression/datasets). The raw data of 3k PBMCs from a healthy donor included 2,700 single cells that were sequenced on the Illumina NextSeq 500 platform. Overall this dataset with ~2200 median UMI count per cell and ~800 median genes per cell.    
-&#8194;&#8194;(2) The test dataset of bronchoalveolar immune cells was collected from healthy controls (HC, n = 3) and patients with moderate (M, n = 3) and severe (S, n = 6) COVID-19 infection. The test data included 63,103 single cells sequenced on a BGI MGISEQ-2000 or Illumina platform. The raw data and predefined label are available from [Github](https://github.com/zhangzlab/covid_balf). 
+&#8194;&#8194;(2) The test dataset of bronchoalveolar immune cells was collected from healthy controls (HC, n = 3) and patients with moderate (M, n = 3) and severe (S, n = 6) COVID-19 infection. The test data included 63,103 single cells sequenced on a BGI MGISEQ-2000 or Illumina platform. The raw data and predefined label are available from [Github](https://github.com/zhangzlab/covid_balf).   
 &#8194;&#8194;(3) The cardiac cells scRNA-seq data were collected from 18 human embryos, ranging from 5 weeks (5W) to 25W of gestation. The UMI count of 4,948 cells and predefined label were downloaded from NCBI GEO GSE106118. Each single cell detected 4,109 genes on average.   
 &#8194;&#8194;All data preprocess scripts and datasets are available at https://github.com/GuangshengPei/deCS/tree/master/Example_code.
 ## 3.2 Bulk RNA-seq 
@@ -155,7 +155,7 @@ pbmc_deCS_FET_Cellmatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_marker
 &#8194;&#8194;(2) The second hiPSC-derived cell lines bulk RNA-seq data were collected from Sry-box 9 (SOX9+) chondroprogenitors (n=4) and GDF5+ mesenchymal cells (n=4). SOX9 is the master transcription factor for chondrocytes. However, the SOX9+ cells tended to form transient cartilage that was readily mineralized in vivo. In contract, GDF5+ cells preferentially formed permanent cartilage that expressed low-to-no hypertrophic chondrocyte markers in vitro and remained unmineralized or only became partially mineralized in vivo.   
 &#8194;&#8194;We provide data preprocess scripts at https://github.com/GuangshengPei/deCS/tree/master/Example_code.
 ## 3.3 Traits associated genes from GWAS summary data
-&#8194;&#8194;Deeper understanding of causal tissues of human complex diseases is an important step towards the etiology of disease origin, yet tissues are complex milieus consisting of numerous cell types. Tissue level association failed to elucidate cell type contributions in disease. The aim of this application was to illustrate the association between cell type and disease. To this end, deCS was applied to the GWAS data using the model for Fisher’s exact test. We provide data preprocess scripts at https://github.com/GuangshengPei/deCS/tree/master/Example_code/3.GWAS_trait_associate_genes.R.  
+&#8194;&#8194;Deeper understanding of causal tissues of human complex diseases is an important step towards the etiology of disease origin, yet tissues are complex milieus consisting of numerous cell types. Tissue level association failed to elucidate cell type contributions in disease. The aim of this application was to illustrate the association between cell type and disease. To this end, deCS was applied to the preprocessed [GWAS data](https://academic.oup.com/nar/article/49/1/53/6029182) using the model for Fisher’s exact test. We provide data preprocess scripts at https://github.com/GuangshengPei/deCS/tree/master/Example_code/3.GWAS_trait_associate_genes.R.  
 ## System Requirements
 &#8194;&#8194;Hardware requirements: deCS package requires only a standard laptop with enough RAM to support the in-memory operations. deCS package is supported for Windows,  macOS and Linux. deCS can be installed on a normal computer within few mins.
 ## Help
