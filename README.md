@@ -1,4 +1,4 @@
-# 1. deCS introduction (v1.0)
+# 1. deCS introduction
 &#8194;&#8194;Single-cell RNA sequencing (scRNA-seq) is rapidly accelerate our understanding of the cellular compositions of complex tissues. Yet, one major limitation for current protocols rely on manual annotations, which are subjectivity and time-consuming. The increasing numbers of scRNA-seq data sets, as well as numerous genetic studies, enable us to build a comprehensive cell type reference atlas. Here, we present deCS, for automatic cell type annotations based on a comprehensive collection of human cell type expression profiles or list of marker genes. We applied deCS to single-cell data sets from various tissues, and systematically evaluated the annotation accuracy under different conditions. Under the same conditions, deCS runs faster and have comparable even better accuracy than the competitive tools.
 # 2. Usage
 ## 2.1 Installing deCS
