@@ -39,7 +39,7 @@ data(Human_cell_landscape)
 # Human_cell_atlas_of_fetal (HCAF_z_score)
 data(Human_cell_atlas_of_fetal)
 ```
-&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch database. The gene list of `"CellMatch_markers"` will be loaded. 
+&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch database. The cell type-marker genes list of `"CellMatch_markers"` will be loaded. 
 ```
 data(CellMatch)
 head(CellMatch_markers)
@@ -73,8 +73,7 @@ FCER1G  -0.7553841   -0.7614134  0.6567761 -0.7648104 -0.7323036    2.2576395  0
 pbmc_deCS_cor_panel_A <- deCS.correlation(pbmc_cluster_marker_z_score, MonacoImmune_main_t_score)
 # dev.off()
 ```  
-&#8194;&#8194;Here, `markers_expression` is scaled gene expression matrix for human scRNA-seq or bulk RNA-seq, users can see detail preprocess steps from [Example_code page](https://github.com/GuangshengPei/deCS/tree/main/Example_code). `ref_panel` is pre-calculated cell type specificity score reference panel, see section (2.2 Built-in data loading).  
-
+&#8194;&#8194;Here, `markers_expression` is scaled gene expression matrix for human scRNA-seq or bulk RNA-seq, users can see detail preprocess steps from [Example_code page](https://github.com/GuangshengPei/deCS/tree/main/Example_code); `ref_panel` is pre-calculated cell type specificity score reference panel, see section (2.2 Built-in data loading).  
 ```  
 pbmc_deCS_cor_panel_A 
          Query Max_correlation            Top1            Top2            Top3     Cell_labels
@@ -89,9 +88,9 @@ pbmc_deCS_cor_panel_A
 9     Platelet       0.7281423     Progenitors       Basophils     Neutrophils     Progenitors
 
 write.table(pbmc_deCS_cor_panel_A, file = "pbmc_deCS_result.txt", sep = "\t", quote = F)
-
-# users can easily change the reference panel, and other parameters, e.g. add `cor_threshold` to avoid mis-annotation (regard as "Undetermined cells").
-
+```  
+Users can easily change other reference panels and parameters, e.g. give `cor_threshold` to avoid mis-annotation (regard as "Undetermined cells").
+```  
  deCS.correlation(pbmc_cluster_marker_z_score, HCL_z_score, top_n = 3, cor_threshold = 0.5, p_threshold = 0.01, cell_type_threshold = 0.5)
          Query Max_correlation                     Top1                   Top2                           Top3              Cell_labels
 1  Naive CD4 T       0.6355362 C52_Proliferating T cell              C6_T cell          C77_Ureteric bud cell C52_Proliferating T cell
@@ -104,7 +103,7 @@ write.table(pbmc_deCS_cor_panel_A, file = "pbmc_deCS_result.txt", sep = "\t", qu
 8           DC       0.7169097       C22_Dendritic cell           C13_Monocyte                  C2_Macrophage       C22_Dendritic cell
 9     Platelet       0.4415510     C20_Endothelial cell   C76_Mesothelial cell               C72_Stromal cell       Undetermined cells
 ```  
- More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.   
+More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.   
 
 ### 2.3.2 deCS.fisher() for list of genes     
 &#8194;&#8194;If the query is a list of genes (e.g. union of marker genes, traits associated genes), we provide function `deCS.fisher()`, implement with Fisher’s exact test to identify query gene set enriched in cell type-specific genes (CTgenes). We allow the user to define the cutoff values, e.g., the top 5% genes with highest t-score/z-score as CTgenes. For each query gene set and CTgenes in a given cell type, deCS will identify whether a set of “candidate marker genes” are disproportionately overlapped in a specific cell type specific genes.     
@@ -136,11 +135,12 @@ CD3E1      8.015029e-55 0.6006175 0.828 0.409  1.099181e-50 Memory CD4 T      CD
 # deCS.fisher(markers_list, ref_panel)
 pbmc_deCS_FET_panel_A <- deCS.fisher(pbmc_top10_markers_list, MonacoImmune_main_t_score)
 ```  
-Here, `markers_list` is a gene list table with at least two columns names with "cluster" and "gene", `ref_panel` is pre-calculated cell type specificity score reference panel.    In addition, users can also create your own cell type marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`.   
+Here, `markers_list` is a gene list table with at least two columns (named with "cluster" and "gene"); `ref_panel` is pre-calculated cell type specificity score reference panel. 
 ``` 
 # Please specifiy type = "list" when the reference is cell type-marker gene lists.
 pbmc_deCS_FET_Cellmatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_markers, type = "list", p.adjust.methods = "bonferroni", p_threshold = 1e-3, cell_type_threshold = 0.05)
 ``` 
+#### Users can also create your own cell type-marker genes list, with at least two columns with names `c("Cell_type", "Marker_gene")`.  
 &#8194;&#8194;More parameters in `deCS.fisher` function is available at `help(deCS.fisher)`.      
 ## 3. More examples application and evaluation   
 ## 3.1 single cell RNA-seq data
