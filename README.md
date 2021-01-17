@@ -135,9 +135,8 @@ CD3E1      8.015029e-55 0.6006175 0.828 0.409  1.099181e-50 Memory CD4 T      CD
 # deCS.fisher(markers_list, ref_panel)
 pbmc_deCS_FET_panel_A <- deCS.fisher(pbmc_top10_markers_list, MonacoImmune_main_t_score)
 ```  
-Here, `markers_list` is a gene list table with at least two columns (named with "cluster" and "gene"); `ref_panel` is pre-calculated cell type specificity score reference panel. 
+Here, `markers_list` is a gene list table with at least two columns (named with "cluster" and "gene"); `ref_panel` is pre-calculated cell type specificity score reference panel. Please specifiy type = "list" when the reference is cell type-marker gene lists. 
 ``` 
-# Please specifiy type = "list" when the reference is cell type-marker gene lists.
 pbmc_deCS_FET_CellMatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_markers, type = "list", p.adjust.methods = "bonferroni", p_threshold = 1e-3, cell_type_threshold = 0.05)
 ``` 
 #### Users can also create your own cell type-marker genes list, with at least two columns with names `Cell_type` and `Marker_gene`.  
@@ -156,6 +155,8 @@ pbmc_deCS_FET_CellMatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_marker
 &#8194;&#8194;We provide data preprocess scripts at https://github.com/GuangshengPei/deCS/tree/master/Example_code.
 ## 3.3 Traits associated genes from GWAS summary data
 &#8194;&#8194;Deeper understanding of causal tissues of human complex diseases is an important step towards the etiology of disease origin, yet tissues are complex milieus consisting of numerous cell types. Tissue level association failed to elucidate cell type contributions in disease. The aim of this application was to illustrate the association between cell type and disease. To this end, deCS was applied to the preprocessed [GWAS data](https://academic.oup.com/nar/article/49/1/53/6029182) using the model for Fisher’s exact test. We provide data preprocess scripts at https://github.com/GuangshengPei/deCS/tree/master/Example_code/3.GWAS_trait_associate_genes.R.  
+## Gene symbol transformation and mouse application
+deCS works only with human gene symbol, users should transform the human ensembl ids to gene symbol at first. For mouse data, users can use the ortholog genes, or just uppercase the query gene names by `toupper()` function.   
 ## System Requirements
 &#8194;&#8194;Hardware requirements: deCS package requires only a standard laptop with enough RAM to support the in-memory operations. deCS package is supported for Windows,  macOS and Linux. deCS can be installed on a normal computer within few mins.
 ## Help
