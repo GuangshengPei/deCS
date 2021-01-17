@@ -141,7 +141,7 @@ Here, `markers_list` is a gene list table with at least two columns (named with 
 pbmc_deCS_FET_CellMatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_markers, type = "list", p.adjust.methods = "bonferroni", p_threshold = 1e-3, cell_type_threshold = 0.05)
 ``` 
 #### Users can also create your own cell type-marker genes list, with at least two columns with names `Cell_type` and `Marker_gene`.  
-&#8194;&#8194;More parameters in `deCS.fisher` function is available at `help(deCS.fisher)`.      
+More parameters in `deCS.fisher` function is available at `help(deCS.fisher)`.      
 ## 3. More examples application and evaluation   
 ## 3.1 single cell RNA-seq data
 &#8194;&#8194;To explore the deCS utility for direct annotation of single cell expression profiles, we evaluated three different scRNA-seq datasets.    
