@@ -157,10 +157,10 @@ pbmc_deCS_FET_CellMatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_marker
 ## 3.3 Traits associated genes from GWAS summary data
 &#8194;&#8194;Deeper understanding of causal tissues of human complex diseases is an important step towards the etiology of disease origin, yet tissues are complex milieus consisting of numerous cell types. Tissue level association failed to elucidate cell type contributions in disease. The aim of this application was to illustrate the association between cell type and disease. To this end, deCS was applied to the preprocessed [GWAS data](https://academic.oup.com/nar/article/49/1/53/6029182) using the model for Fisher’s exact test. We provide data preprocess scripts at https://github.com/GuangshengPei/deCS/tree/master/Example_code/3.GWAS_trait_associate_genes.R.  
 ## Gene symbol transformation and mouse application
-deCS works only with human gene symbol, users should transform the human ensembl ids to gene symbol at first. For mouse data, users can use the ortholog genes, or just uppercase the query gene names by `toupper()` function.   
+&#8194;&#8194;deCS works only with human gene symbol, users should transform the human ensembl ids to gene symbol at first. For mouse data, users can use the ortholog genes, or just uppercase the query gene names by `toupper()` function.   
 ## System Requirements
 &#8194;&#8194;Hardware requirements: deCS package requires only a standard laptop with enough RAM to support the in-memory operations. deCS package is supported for Windows,  macOS and Linux. deCS can be installed on a normal computer within few mins.
 ## Help
-If you have any question, comment or suggestion, please contact peiguangsheng@gmail.com.
+&#8194;&#8194;If you have any question, comment or suggestion, please contact peiguangsheng@gmail.com.
 
 
