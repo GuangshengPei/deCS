@@ -90,7 +90,7 @@ pbmc_deCS_cor_panel_A
 
 write.table(pbmc_deCS_cor_panel_A, file = "pbmc_deCS_result.txt", sep = "\t", quote = F)
 ```  
-Users can easily change other reference panels and parameters, e.g. give `cor_threshold` to avoid mis-annotation (regard as "Undetermined cells").
+Users can change other reference panels and parameters, e.g. give `cor_threshold` to avoid mis-annotation (regard as "Undetermined cells").
 ```  
  deCS.correlation(pbmc_cluster_marker_z_score, HCL_z_score, top_n = 3, cor_threshold = 0.5, p_threshold = 0.01, cell_type_threshold = 0.5)
          Query Max_correlation                     Top1                   Top2                           Top3              Cell_labels
