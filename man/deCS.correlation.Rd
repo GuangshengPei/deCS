@@ -11,7 +11,7 @@ cor_threshold = 0.1, p_threshold = 0.05, cell_type_threshold = 0, plot_figure = 
 \arguments{
   \item{markers_expression}{Gene scaled expression matrix for human scRNA-seq or bulk RNA-seq.
 }
-  \item{ref_panel}{Gene cell type specific t-score or z-score matrix, can be loaded by data(ref_panel), ref_panel = c("BlueprintEncode_main", "BlueprintEncode_fine", "Human_cell_landscape", "DICE_main", "DICE_fine", "MonacoImmune_main", "MonacoImmune_fine", "CellMatch").
+  \item{ref_panel}{Gene cell type specific t-score or z-score matrix, can be loaded by data(ref_panel), ref_panel = c("BlueprintEncode_main", "BlueprintEncode_fine", "Human_cell_landscape", "Human_cell_atlas_of_fetal", "DICE_main", "DICE_fine", "MonacoImmune_main", "MonacoImmune_fine", "CellMatch").
 }
   \item{methods}{methods = c("pearson", "spearman").
 }
