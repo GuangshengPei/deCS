@@ -39,7 +39,7 @@ data(Human_cell_landscape)
 # Human_cell_atlas_of_fetal (HCAF_z_score)
 data(Human_cell_atlas_of_fetal)
 ```
-&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch database. The cell type-marker genes list of `"CellMatch_markers"` will be loaded. 
+&#8194;&#8194;In addition, one can also load the cell type marker gene list from CellMatch database. 
 ```
 data(CellMatch)
 head(CellMatch_markers)
@@ -51,6 +51,7 @@ head(CellMatch_markers)
 5 1-Cell Stage Cell (Blastomere)     BCL2L10
 6 1-Cell Stage Cell (Blastomere)       BLCAP
 ```
+The cell type-marker genes list of `"CellMatch_markers"` will be loaded.
 ## 2.3 Input data
 &#8194;&#8194;Depending on the type of query data, we implemented two test approaches: Correlation analysis and Fisher's exact test for cell type enrichment analysis.
 In this tutorial, we will run deCS on [preprocessed PBMC data](https://github.com/GuangshengPei/deCS/tree/main/Example_data/1.1.PBMC/pbmc_example.rda).
