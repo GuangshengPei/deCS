@@ -56,7 +56,7 @@ head(CellMatch_markers)
 &#8194;&#8194;Depending on the type of query data, we implemented two test approaches: Correlation analysis and Fisher's exact test for cell type enrichment analysis.
 In this tutorial, we will run deCS on [preprocessed PBMC data](https://github.com/GuangshengPei/deCS/tree/main/Example_data/1.1.PBMC/pbmc_example.rda).
 
-### 2.3.1 deCS.correlation() for expression profiles
+### 2.3.1 deCS correlation analysis for expression profiles
 &#8194;&#8194;If the query is gene expression profile, we provide function `deCS.correlation()` for cell type enrichment analysis. Simply, we calculate pearson correlation coefficient (PCC) or Spearman's rank correlation coefficient with each of the cell type in the reference dataset, then the most relevant cell type(s) will be identified. 
 ```
 load("pbmc_example.rda")
@@ -106,7 +106,7 @@ Users can change other reference panels and parameters, e.g. give `cor_threshold
 ```  
 More parameters in `deCS.correlation` function is available at `help(deCS.correlation)`.   
 
-### 2.3.2 deCS.fisher() for list of genes     
+### 2.3.2 deCS Fisher's exact test for list of genes     
 &#8194;&#8194;If the query is a list of genes (e.g. union of marker genes, traits associated genes), we provide function `deCS.fisher()`, implement with Fisher’s exact test to identify query gene set enriched in cell type-specific genes (CTgenes). We allow the user to define the cutoff values, e.g., the top 5% genes with highest t-score/z-score as CTgenes. For each query gene set and CTgenes in a given cell type, deCS will identify whether a set of “candidate marker genes” are disproportionately overlapped in a specific cell type specific genes.     
 ```  
 load("pbmc_example.rda")
