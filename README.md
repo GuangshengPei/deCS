@@ -54,8 +54,39 @@ head(CellMatch_markers)
 &#8194;&#8194;The cell type-marker genes list of `"CellMatch_markers"` will be loaded.
 ## 2.3 Input data
 &#8194;&#8194;Depending on the type of query data, we implemented two test approaches: Correlation analysis and Fisher's exact test for cell type enrichment analysis.
-In this tutorial, we will run deCS on [preprocessed PBMC data](https://github.com/GuangshengPei/deCS/tree/main/Example_data/1.1.PBMC/pbmc_example.rda).
+In this tutorial, we will run deCS on [preprocessed PBMC data](https://github.com/GuangshengPei/deCS/tree/main/Example_data/1.1.PBMC/pbmc_example.rda). Or start with Cellranger output.
 
+# Load the PBMC dataset
+```
+pbmc.data <- Read10X(data.dir = "Example_data/1.1.PBMC/hg19/")
+```
+# Initialize the Seurat object with the raw data, then conduct standard normalization.
+```
+pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
+pbmc <- pbmc %>%
+  NormalizeData() %>%
+  FindVariableFeatures() %>%
+  ScaleData() %>%
+  RunPCA() 
+```
+# Standard cell clustering analysis.
+```
+pbmc <- FindNeighbors(pbmc, dims = 1:10) 
+pbmc <- FindClusters(pbmc, resolution = 0.5)
+pbmc <- RunUMAP(pbmc, dims = 1:10) 
+```
+# Identify cluster specific expressed genes.
+```
+pbmc.markers <- FindAllMarkers(pbmc, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
+top10 <- pbmc.markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_log2FC)
+pbmc_top10_markers_list = pbmc.markers[which(pbmc.markers$gene %in% top10$gene),] 
+```
+# Union of marker genes and z-score calculation.
+```
+pbmc_cluster_average = AverageExpression(pbmc)[[1]]
+pbmc_cluster_marker_average = pbmc_cluster_average[which(rownames(pbmc_cluster_average) %in% top10$gene), ]
+pbmc_cluster_marker_z_score = t(scale(t(pbmc_cluster_marker_average)))
+```
 ### 2.3.1 deCS correlation analysis for expression profiles
 &#8194;&#8194;If the query is gene expression profile, we provide function `deCS.correlation()` for cell type enrichment analysis. Simply, we calculate pearson correlation coefficient (PCC) or Spearman's rank correlation coefficient with each of the cell type in the reference dataset, then the most relevant cell type(s) will be identified. 
 ```
