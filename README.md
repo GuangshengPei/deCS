@@ -56,11 +56,11 @@ head(CellMatch_markers)
 &#8194;&#8194;Depending on the type of query data, we implemented two test approaches: Correlation analysis and Fisher's exact test for cell type enrichment analysis.
 In this tutorial, we will run deCS on [preprocessed PBMC data](https://github.com/GuangshengPei/deCS/tree/main/Example_data/1.1.PBMC/pbmc_example.rda). Or start with Cellranger output.
 
-# Load the PBMC dataset
+### Load the PBMC dataset
 ```
 pbmc.data <- Read10X(data.dir = "Example_data/1.1.PBMC/hg19/")
 ```
-# Initialize the Seurat object with the raw data, then conduct standard normalization.
+### Initialize the Seurat object with the raw data, then conduct standard normalization.
 ```
 pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
 pbmc <- pbmc %>%
@@ -69,19 +69,19 @@ pbmc <- pbmc %>%
   ScaleData() %>%
   RunPCA() 
 ```
-# Standard cell clustering analysis.
+### Standard cell clustering analysis.
 ```
 pbmc <- FindNeighbors(pbmc, dims = 1:10) 
 pbmc <- FindClusters(pbmc, resolution = 0.5)
 pbmc <- RunUMAP(pbmc, dims = 1:10) 
 ```
-# Identify cluster specific expressed genes.
+### Identify cluster specific expressed genes.
 ```
 pbmc.markers <- FindAllMarkers(pbmc, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
 top10 <- pbmc.markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_log2FC)
 pbmc_top10_markers_list = pbmc.markers[which(pbmc.markers$gene %in% top10$gene),] 
 ```
-# Union of marker genes and z-score calculation.
+### Union of marker genes and z-score calculation.
 ```
 pbmc_cluster_average = AverageExpression(pbmc)[[1]]
 pbmc_cluster_marker_average = pbmc_cluster_average[which(rownames(pbmc_cluster_average) %in% top10$gene), ]
