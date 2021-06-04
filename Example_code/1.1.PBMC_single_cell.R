@@ -32,7 +32,7 @@ DimPlot(pbmc, reduction = "umap")
 
 # Identify cluster specific expressed genes
 pbmc.markers <- FindAllMarkers(pbmc, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
-top10 <- pbmc.markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_logFC)
+top10 <- pbmc.markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_lo2gFC)
 DoHeatmap(pbmc, features = top10$gene) + NoLegend()
 
 # Manually annotation
