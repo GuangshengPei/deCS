@@ -18,8 +18,6 @@ devtools::install_github("GuangshengPei/deCS")
 Once we have the package installed, we can load the package. 
 ```
 library(deCS) 
-library(Seurat)
-library(dplyr)
 ``` 
 ## 2.2 Built-in data loading
 &#8194;&#8194;deCS collected several cell type reference panels, including BlueprintEncode, the Database of Immune Cell Expression (DICE), MonacoImmune, human cell landscape, human cell atlas of fetal et al. After installation of deCS package, one can load the build-in references using the following commands:  
@@ -60,6 +58,8 @@ In this tutorial, we will run deCS on [preprocessed PBMC data](https://github.co
 
 ### Load the PBMC dataset
 ```
+library(Seurat)
+library(dplyr)
 pbmc.data <- Read10X(data.dir = "Example_data/1.1.PBMC/hg19/")
 ```
 ### Initialize the Seurat object with the raw data, then conduct standard normalization.
