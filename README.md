@@ -17,7 +17,9 @@ devtools::install_github("GuangshengPei/deCS")
 ### Getting Started 
 Once we have the package installed, we can load the package. 
 ```
-library(deCS)  
+library(deCS) 
+library(Seurat)
+library(dplyr)
 ``` 
 ## 2.2 Built-in data loading
 &#8194;&#8194;deCS collected several cell type reference panels, including BlueprintEncode, the Database of Immune Cell Expression (DICE), MonacoImmune, human cell landscape, human cell atlas of fetal et al. After installation of deCS package, one can load the build-in references using the following commands:  
