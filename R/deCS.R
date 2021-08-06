@@ -110,7 +110,7 @@ deCS.fisher = function(markers_list, ref_panel, type = "score", ref_panel_marker
 					FET_pvalue = matrix(1, nrow = length(unique(markers_list$cluster)), ncol = length(unique(ref_panel$Cell_type)))
 					rownames(intersection_ratio) = rownames(FET_pvalue) = unique(markers_list$cluster)
 					colnames(intersection_ratio) = colnames(FET_pvalue) = unique(ref_panel$Cell_type)	
-						for (i in 1:ncol(markers_list)) {
+						for (i in 1:length(table(markers_list$cluster))) {
 							for (j in 1:length(unique(ref_panel$Cell_type))) {
 								query_markers = markers_list[which(markers_list$cluster == as.character(unique(markers_list$cluster)[i])),]$gene
 								ref_markers <- as.character(ref_panel$Marker_gene)[ref_panel$Cell_type == as.character(unique(ref_panel$Cell_type)[j])]
@@ -206,7 +206,7 @@ deCS.fisher = function(markers_list, ref_panel, type = "score", ref_panel_marker
 					FET_pvalue = matrix(1, nrow = length(unique(markers_list$cluster)), ncol = length(unique(ref_panel$Cell_type)))
 					rownames(intersection_count) = rownames(FET_pvalue) = unique(markers_list$cluster)
 					colnames(intersection_count) = colnames(FET_pvalue) = unique(ref_panel$Cell_type)	
-						for (i in 1:ncol(markers_list)) {
+						for (i in 1:length(table(markers_list$cluster))) {
 							for (j in 1:length(unique(ref_panel$Cell_type))) {
 								query_markers = markers_list[which(markers_list$cluster == as.character(unique(markers_list$cluster)[i])),]$gene
 								ref_markers <- as.character(ref_panel$Marker_gene)[ref_panel$Cell_type == as.character(unique(ref_panel$Cell_type)[j])]
