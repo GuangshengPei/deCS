@@ -85,7 +85,7 @@ pbmc_top10_markers_list = pbmc.markers[which(pbmc.markers$gene %in% top10$gene),
 ```
 ### Union of marker genes and z-score calculation.
 ```
-pbmc_cluster_average = AverageExpression(pbmc)[[1]]
+pbmc_cluster_average = log(AverageExpression(pbmc)[[1]] + 1, 2)
 pbmc_cluster_marker_average = pbmc_cluster_average[which(rownames(pbmc_cluster_average) %in% top10$gene), ]
 pbmc_cluster_marker_z_score = t(scale(t(pbmc_cluster_marker_average)))
 ```
