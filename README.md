@@ -176,7 +176,7 @@ pbmc_deCS_FET_CellMatch <- deCS.fisher(pbmc_top10_markers_list, CellMatch_marker
 #### Users can also create your own cell type-marker genes list, with at least two columns with names `Cell_type` and `Marker_gene`.  
 More parameters in `deCS.fisher` function is available at `help(deCS.fisher)`.      
 ## 3. Shiny application
-&#8194;&#8194;We further incorporated a shiny application to deCS package available at https://gpei.shinyapps.io/decs_cor/ or https://gpei.shinyapps.io/decs_fisher/. Users only need to upload a well clustered Seurat object (save by saveRDS function). Please see details in demo file (Shiny_app/pbmc_downsampled.rds). Within one minutes, the deCS annotation result files among different references will be displayed in an interactive mode, users can change any parameters to optimize their results.     
+&#8194;&#8194;We further incorporated a shiny application to deCS package available at https://gpei.shinyapps.io/decs_cor/ or https://gpei.shinyapps.io/decs_fisher/. Users only need to upload a well clustered Seurat object (save by saveRDS function). Please see details in demo file (Shiny_app/pbmc_downsampled.rds). Within one minute, the deCS annotation result files among different references will be displayed in an interactive mode, users can change any parameters to optimize their results.     
 ## 4. More examples application and evaluation   
 ## 4.1 single cell RNA-seq data
 &#8194;&#8194;To explore the deCS utility for direct annotation of single cell expression profiles, we evaluated three different scRNA-seq datasets.    
