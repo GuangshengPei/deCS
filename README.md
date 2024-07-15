@@ -87,7 +87,7 @@ pbmc_top10_markers_list = pbmc.markers[which(pbmc.markers$gene %in% top10$gene),
 ```
 pbmc_cluster_average = log(AverageExpression(pbmc)[[1]] + 1, 2)
 pbmc_cluster_marker_average = pbmc_cluster_average[which(rownames(pbmc_cluster_average) %in% top10$gene), ]
-pbmc_cluster_marker_z_score = t(scale(t(as.data.frame（pbmc_cluster_marker_average)))）
+pbmc_cluster_marker_z_score = t(scale(t(as.data.frame(pbmc_cluster_marker_average))))
 ```
 ### 2.3.1 deCS correlation analysis for expression profiles
 &#8194;&#8194;If the query is gene expression profile, we provide function `deCS.correlation()` for cell type enrichment analysis. Simply, we calculate pearson correlation coefficient (PCC) or Spearman's rank correlation coefficient with each of the cell type in the reference dataset, then the most relevant cell type(s) will be identified. 
